@@ -13,16 +13,12 @@ export default class Victim {
     this.accelerationY = 2;
     this.frictionY = 0.9;
 
-    this.chanceToMove = 5;
+    this.chanceToMove = 1;
     this.move = false;
     this.moveDuration = 0;
-  }
+    this.moveDirection = 0;
 
-  checkIfShouldMove() {
-    if (Math.floor(Math.random() * 100) < this.chanceToMove) {
-      this.move = true;
-      this.moveDuration = Math.floor(Math.random() * 100);
-    }
+    this.maxMoveDuration = 33;
   }
 
   moveLeft() {
@@ -53,17 +49,17 @@ export default class Victim {
     );
   }
 
+  checkIfShouldMove() {
+    if (Math.floor(Math.random() * 100) < this.chanceToMove) {
+      this.move = true;
+      this.moveDuration = Math.floor(Math.random() * this.maxMoveDuration);
+    }
+  }
+
   animate(state) {
     if (this.moveDuration > 0) {
       this.moveDuration -= 1;
-    } else {
-      this.checkIfShouldMove();
-    }
-
-    if (this.move) {
-      this.move = false;
-
-      switch (Math.floor(Math.random() * 100) % 4) {
+      switch (this.moveDirection) {
         case 0:
           this.moveLeft();
           break;
@@ -77,6 +73,13 @@ export default class Victim {
           this.moveDown();
           break;
       }
+    } else {
+      this.checkIfShouldMove();
+    }
+
+    if (this.move) {
+      this.move = false;
+      this.moveDirection = Math.floor(Math.random() * 100) % 4;
     }
 
     this.velocityX *= this.frictionX;
