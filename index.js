@@ -1,6 +1,7 @@
 import { gameInstance } from './src/game.js';
 import Cthulu from './src/cthulu.js';
 import Victim from './src/victim.js';
+import Box from './src/box.js';
 
 gameInstance.addObject(
   new Cthulu(
@@ -23,6 +24,8 @@ gameInstance.addObject(
   ),
 );
 
+// Victims
+
 gameInstance.addObject(
   new Victim(
     new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
@@ -56,6 +59,55 @@ gameInstance.addObject(
       48,
       56,
     ),
+  ),
+);
+
+// Borders
+// Bottom
+gameInstance.addObject(
+  new Box(
+    new PIXI.extras.TilingSprite.fromImage(
+      'https://s3-us-west-2.amazonaws.com/s.cdpn.io/780791/floor-tile.png',
+      window.innerWidth,
+      64,
+    ),
+    new PIXI.Rectangle(0, window.innerHeight - 64, window.innerWidth, 64),
+  ),
+);
+
+// Top
+gameInstance.addObject(
+  new Box(
+    new PIXI.extras.TilingSprite.fromImage(
+      'https://s3-us-west-2.amazonaws.com/s.cdpn.io/780791/floor-tile.png',
+      window.innerWidth,
+      64,
+    ),
+    new PIXI.Rectangle(0, 0, window.innerWidth, 64),
+  ),
+);
+
+// Left
+gameInstance.addObject(
+  new Box(
+    new PIXI.extras.TilingSprite.fromImage(
+      'https://s3-us-west-2.amazonaws.com/s.cdpn.io/780791/floor-tile.png',
+      64,
+      window.innerHeight,
+    ),
+    new PIXI.Rectangle(0, 0, 64, window.innerHeight),
+  ),
+);
+
+// Right
+gameInstance.addObject(
+  new Box(
+    new PIXI.extras.TilingSprite.fromImage(
+      'https://s3-us-west-2.amazonaws.com/s.cdpn.io/780791/floor-tile.png',
+      64,
+      window.innerHeight,
+    ),
+    new PIXI.Rectangle(window.innerWidth - 64, 0, 64, window.innerHeight),
   ),
 );
 
