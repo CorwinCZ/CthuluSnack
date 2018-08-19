@@ -4,11 +4,7 @@ import Victim from './src/victim.js';
 import Box from './src/box.js';
 import BrainzDisplay from './src/brainzDisplay.js';
 
-var style = new PIXI.TextStyle({
-  fill: '#ffffff',
-});
-
-const brainzDisplay = new BrainzDisplay(new PIXI.Text('0', style));
+const brainzDisplay = new BrainzDisplay('0', '#ffffff');
 
 gameInstance.addObjectText(brainzDisplay);
 
