@@ -1,5 +1,3 @@
-console.log('Game is working!');
-
 class Game {
   constructor() {
     this.state = {
