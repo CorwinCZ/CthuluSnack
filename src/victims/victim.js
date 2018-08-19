@@ -1,6 +1,15 @@
 export default class Victim {
-  constructor(sprite, rectangle, brainzDisplay) {
-    this.sprite = sprite.walking;
+  constructor(animations, rectangle, brainzDisplay) {
+    this.animations = animations;
+    this.sprite = new PIXI.Graphics();
+    this.sprite.addChild(animations.walking);
+
+    this.currentAnimation = animations.walking;
+
+    this.currentAnimation.animationSpeed = 0.2;
+    this.currentAnimation.play();
+
+    // this.sprite = animations.walking;
     this.rectangle = rectangle;
     this.brainzDisplay = brainzDisplay;
 
@@ -25,9 +34,6 @@ export default class Victim {
     this.isDead = false;
 
     this.brainNutrition = 2;
-
-    this.sprite.animationSpeed = 0.2;
-    this.sprite.play();
   }
 
   setInitValues() {
@@ -35,44 +41,27 @@ export default class Victim {
     this.brainzDisplay.setText(this.currentHP);
   }
 
+  victimDied() {
+    this.brainzDisplay.setText('Dead');
+    this.isDead = true;
+    this.sprite.removeChildren();
+    this.sprite.addChild(this.animations.acid);
+    this.currentAnimation = this.animations.acid;
+
+    this.currentAnimation.loop = false;
+    this.currentAnimation.animationSpeed = 0.2;
+    this.currentAnimation.play();
+  }
+
   takeDamage() {
     if (this.currentHP <= 0) {
-      this.brainzDisplay.setText('Dead');
-      this.isDead = true;
+      this.victimDied();
       return 0;
     }
     this.currentHP -= 1;
     this.brainzDisplay.setText(this.currentHP);
 
     return this.brainNutrition;
-  }
-
-  moveLeft() {
-    this.velocityX = Math.max(
-      this.velocityX - this.accelerationX,
-      this.maximumVelocityX * -1,
-    );
-  }
-
-  moveRight() {
-    this.velocityX = Math.min(
-      this.velocityX + this.accelerationX,
-      this.maximumVelocityX,
-    );
-  }
-
-  moveUp() {
-    this.velocityY = Math.max(
-      this.velocityY - this.accelerationY,
-      this.maximumVelocityY * -1,
-    );
-  }
-
-  moveDown() {
-    this.velocityY = Math.min(
-      this.velocityY + this.accelerationY,
-      this.maximumVelocityY,
-    );
   }
 
   checkIfShouldMove() {
@@ -161,5 +150,33 @@ export default class Victim {
     this.sprite.x = this.rectangle.x;
     this.sprite.y = this.rectangle.y;
     this.brainzDisplay.setPosition(this.sprite.x, this.sprite.y - 30);
+  }
+
+  moveLeft() {
+    this.velocityX = Math.max(
+      this.velocityX - this.accelerationX,
+      this.maximumVelocityX * -1,
+    );
+  }
+
+  moveRight() {
+    this.velocityX = Math.min(
+      this.velocityX + this.accelerationX,
+      this.maximumVelocityX,
+    );
+  }
+
+  moveUp() {
+    this.velocityY = Math.max(
+      this.velocityY - this.accelerationY,
+      this.maximumVelocityY * -1,
+    );
+  }
+
+  moveDown() {
+    this.velocityY = Math.min(
+      this.velocityY + this.accelerationY,
+      this.maximumVelocityY,
+    );
   }
 }

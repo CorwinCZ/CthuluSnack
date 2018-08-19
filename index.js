@@ -12,8 +12,6 @@ import PoliticianTarget from './src/victims/politicianTarget.js';
 
 import createNewVictim from './src/victims/index.js';
 
-import { loadAnimations } from './src/Unity/MetaFile.js';
-
 gameInstance.addObject(
   new Cthulu(
     new PIXI.Sprite.fromImage(
@@ -26,81 +24,54 @@ gameInstance.addObject(
 
 // Victims
 
-loadAnimations('3').then(data =>
-  gameInstance.addObject(
-    new ElderyVictim(
-      data,
-      new PIXI.Rectangle(
-        window.innerWidth / 2 + 100,
-        window.innerHeight / 2 + 100,
-        96,
-        96,
-      ),
-      new BrainzDisplay('', 'brown'),
-    ),
-  ),
+createNewVictim(
+  ElderyVictim,
+  3,
+  window.innerWidth / 2 + 100,
+  window.innerHeight / 2 + 100,
+  'brown',
 );
 
 createNewVictim(
   BusinessManVictim,
-  5,
-  window.innerWidth / 2 + 100,
+  14,
+  window.innerWidth / 2 - 100,
   window.innerHeight / 2 + 100,
   'green',
 );
-/*
-gameInstance.addObject(
-  new CommonVictim(
-    new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
-    new PIXI.Rectangle(
-      window.innerWidth / 2 - 100,
-      window.innerHeight / 2 + 100,
-      48,
-      56,
-    ),
-    new BrainzDisplay('', 'yellow'),
-  ),
+
+createNewVictim(
+  CommonVictim,
+  5,
+  window.innerWidth / 2 - 100,
+  window.innerHeight / 2 + 100,
+  'yellow',
 );
 
-gameInstance.addObject(
-  new CovardVictim(
-    new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
-    new PIXI.Rectangle(
-      window.innerWidth / 2 - 100,
-      window.innerHeight / 2 - 100,
-      48,
-      56,
-    ),
-    new BrainzDisplay('', 'blue'),
-  ),
+createNewVictim(
+  CovardVictim,
+  11,
+  window.innerWidth / 2 - 100,
+  window.innerHeight / 2 - 100,
+  'blue',
 );
 
-gameInstance.addObject(
-  new FighterVictim(
-    new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
-    new PIXI.Rectangle(
-      window.innerWidth / 2 - 100,
-      window.innerHeight / 2 - 100,
-      48,
-      56,
-    ),
-    new BrainzDisplay('', 'red'),
-  ),
+createNewVictim(
+  FighterVictim,
+  10,
+  window.innerWidth / 2 - 150,
+  window.innerHeight / 2 - 100,
+  'red',
 );
 
-gameInstance.addObject(
-  new PoliticianTarget(
-    new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
-    new PIXI.Rectangle(
-      window.innerWidth / 2 - 100,
-      window.innerHeight / 2 - 100,
-      48,
-      56,
-    ),
-    new BrainzDisplay('', 'gold'),
-  ),
+createNewVictim(
+  PoliticianTarget,
+  19,
+  window.innerWidth / 2 - 100,
+  window.innerHeight / 2 - 150,
+  'gold',
 );
-*/
+
 // Borders
 // Bottom
 gameInstance.addObject(
