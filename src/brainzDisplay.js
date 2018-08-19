@@ -1,5 +1,7 @@
+import { gameInstance } from './game.js';
+
 export default class BrainzDisplay {
-  constructor(initialValue = '0', color = '#ffffff') {
+  constructor(initialValue = '', color = '#ffffff') {
     const style = new PIXI.TextStyle({
       fill: color,
     });
@@ -7,8 +9,10 @@ export default class BrainzDisplay {
     const text = new PIXI.Text(initialValue, style);
 
     this.text = text;
-    this.text.x = 500;
-    this.text.y = 500;
+    this.text.x = 0;
+    this.text.y = 0;
+
+    gameInstance.addObjectText(this);
   }
 
   setText(newText) {

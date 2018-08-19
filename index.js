@@ -6,17 +6,13 @@ import BrainzDisplay from './src/brainzDisplay.js';
 import Victim from './src/victims/victim.js';
 import ElderyVictim from './src/victims/elderyVictim.js';
 
-const brainzDisplay = new BrainzDisplay('0', '#ffffff');
-
-gameInstance.addObjectText(brainzDisplay);
-
 gameInstance.addObject(
   new Cthulu(
     new PIXI.Sprite.fromImage(
       'https://s3-us-west-2.amazonaws.com/s.cdpn.io/780791/player-idle.png',
     ),
     new PIXI.Rectangle(window.innerWidth / 2, window.innerHeight / 2, 44, 56),
-    brainzDisplay,
+    new BrainzDisplay('0', '#ffffff'),
   ),
 );
 
@@ -31,6 +27,7 @@ gameInstance.addObject(
       48,
       56,
     ),
+    new BrainzDisplay('Dead', '#ffffff'),
   ),
 );
 

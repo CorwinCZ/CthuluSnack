@@ -1,10 +1,11 @@
 import Victim from './victim.js';
 
 export default class PoliticianTarget extends Victim {
-  constructor(sprite, rectangle) {
-    super(sprite, rectangle);
+  constructor(sprite, rectangle, brainzDisplay) {
+    super(sprite, rectangle, brainzDisplay);
     this.sprite = sprite;
     this.rectangle = rectangle;
+    this.brainzDisplay = brainzDisplay;
 
     this.maximumVelocityX = 12;
     this.accelerationX = 1;

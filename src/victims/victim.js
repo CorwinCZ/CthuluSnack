@@ -1,7 +1,8 @@
 export default class Victim {
-  constructor(sprite, rectangle) {
+  constructor(sprite, rectangle, brainzDisplay) {
     this.sprite = sprite;
     this.rectangle = rectangle;
+    this.brainzDisplay = brainzDisplay;
 
     this.velocityX = 0;
     this.maximumVelocityX = 8;
@@ -152,5 +153,6 @@ export default class Victim {
 
     this.sprite.x = this.rectangle.x;
     this.sprite.y = this.rectangle.y;
+    this.brainzDisplay.setPosition(this.sprite.x, this.sprite.y - 30);
   }
 }
