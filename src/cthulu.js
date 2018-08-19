@@ -70,7 +70,7 @@ export default class Cthulu {
         me.y < you.y + you.height &&
         me.y + me.height > you.y
       ) {
-        if (object.constructor.name === 'Victim') {
+        if (object.brainNutrition) {
           if (this.isAttacking) {
             this.brainzEaten += object.takeDamage();
             this.brainzDisplay.setText(this.brainzEaten);

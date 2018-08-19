@@ -1,8 +1,10 @@
 import { gameInstance } from './src/game.js';
 import Cthulu from './src/cthulu.js';
-import Victim from './src/victim.js';
 import Box from './src/box.js';
 import BrainzDisplay from './src/brainzDisplay.js';
+
+import Victim from './src/victims/victim.js';
+import ElderyVictim from './src/victims/elderyVictim.js';
 
 const brainzDisplay = new BrainzDisplay('0', '#ffffff');
 
@@ -21,7 +23,7 @@ gameInstance.addObject(
 // Victims
 
 gameInstance.addObject(
-  new Victim(
+  new ElderyVictim(
     new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
     new PIXI.Rectangle(
       window.innerWidth / 2 + 100,
@@ -32,7 +34,7 @@ gameInstance.addObject(
   ),
 );
 
-gameInstance.addObject(
+/*gameInstance.addObject(
   new Victim(
     new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
     new PIXI.Rectangle(
@@ -66,7 +68,7 @@ gameInstance.addObject(
       56,
     ),
   ),
-);
+);*/
 
 // Borders
 // Bottom

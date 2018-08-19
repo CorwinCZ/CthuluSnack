@@ -76,6 +76,7 @@ export default class Victim {
   }
 
   animate(state) {
+    // console.log('ANIMATE');
     if (this.moveDuration > 0) {
       this.moveDuration -= 1;
       switch (this.moveDirection) {
