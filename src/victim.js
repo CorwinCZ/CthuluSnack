@@ -23,15 +23,20 @@ export default class Victim {
     this.maxHP = 100;
     this.currentHP = this.maxHP;
     this.isDead = false;
+
+    this.brainNutrition = 2;
   }
 
   takeDamage() {
     this.currentHP -= 1;
-    console.log('Ouch', this.currentHP);
+
     if (this.currentHP < 0) {
       console.log('DEAD');
       this.isDead = true;
+    } else {
+      return this.brainNutrition;
     }
+    return 0;
   }
 
   moveLeft() {

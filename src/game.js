@@ -103,6 +103,10 @@ class Game {
     this.state.objects.push(object);
     this.stage.addChild(object.sprite);
   }
+
+  addObjectText(object) {
+    this.stage.addChild(object.text);
+  }
 }
 
 const gameInstance = new Game();

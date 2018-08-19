@@ -2,6 +2,15 @@ import { gameInstance } from './src/game.js';
 import Cthulu from './src/cthulu.js';
 import Victim from './src/victim.js';
 import Box from './src/box.js';
+import BrainzDisplay from './src/brainzDisplay.js';
+
+var style = new PIXI.TextStyle({
+  fill: '#ffffff',
+});
+
+const brainzDisplay = new BrainzDisplay(new PIXI.Text('0', style));
+
+gameInstance.addObjectText(brainzDisplay);
 
 gameInstance.addObject(
   new Cthulu(
@@ -9,8 +18,11 @@ gameInstance.addObject(
       'https://s3-us-west-2.amazonaws.com/s.cdpn.io/780791/player-idle.png',
     ),
     new PIXI.Rectangle(window.innerWidth / 2, window.innerHeight / 2, 44, 56),
+    brainzDisplay,
   ),
 );
+
+// Victims
 
 gameInstance.addObject(
   new Victim(
@@ -23,8 +35,6 @@ gameInstance.addObject(
     ),
   ),
 );
-
-// Victims
 
 gameInstance.addObject(
   new Victim(
