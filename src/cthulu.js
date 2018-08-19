@@ -16,35 +16,19 @@ export default class Cthulu {
 
   animate(state) {
     if (state.keys[37]) {
-      // left
-      this.velocityX = Math.max(
-        this.velocityX - this.accelerationX,
-        this.maximumVelocityX * -1,
-      );
+      this.moveLeft();
     }
 
     if (state.keys[39]) {
-      // right
-      this.velocityX = Math.min(
-        this.velocityX + this.accelerationX,
-        this.maximumVelocityX,
-      );
+      this.moveRight();
     }
 
     if (state.keys[38]) {
-      // up
-      this.velocityY = Math.max(
-        this.velocityY - this.accelerationY,
-        this.maximumVelocityY * -1,
-      );
+      this.moveUp();
     }
 
     if (state.keys[40]) {
-      // down
-      this.velocityY = Math.min(
-        this.velocityY + this.accelerationY,
-        this.maximumVelocityY,
-      );
+      this.moveDown();
     }
 
     this.velocityX *= this.frictionX;
@@ -97,5 +81,33 @@ export default class Cthulu {
 
     this.sprite.x = this.rectangle.x;
     this.sprite.y = this.rectangle.y;
+  }
+
+  moveLeft() {
+    this.velocityX = Math.max(
+      this.velocityX - this.accelerationX,
+      this.maximumVelocityX * -1,
+    );
+  }
+
+  moveRight() {
+    this.velocityX = Math.min(
+      this.velocityX + this.accelerationX,
+      this.maximumVelocityX,
+    );
+  }
+
+  moveUp() {
+    this.velocityY = Math.max(
+      this.velocityY - this.accelerationY,
+      this.maximumVelocityY * -1,
+    );
+  }
+
+  moveDown() {
+    this.velocityY = Math.min(
+      this.velocityY + this.accelerationY,
+      this.maximumVelocityY,
+    );
   }
 }

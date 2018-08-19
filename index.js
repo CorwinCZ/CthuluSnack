@@ -22,7 +22,7 @@ gameInstance.addObject(
     ),
   ),
 );
-/*
+
 gameInstance.addObject(
   new Victim(
     new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
@@ -57,7 +57,7 @@ gameInstance.addObject(
       56,
     ),
   ),
-);*/
+);
 
 gameInstance.addEventListenerTo(window);
 gameInstance.addRendererTo(document.body);
