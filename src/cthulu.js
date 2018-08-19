@@ -9,14 +9,9 @@ export default class Cthulu {
     this.frictionX = 0.9;
 
     this.velocityY = 0;
-    this.maximumVelocityY = 30;
-    this.accelerationY = 3;
-    this.jumpVelocity = -30;
-
-    this.climbingSpeed = 10;
-
-    this.isOnGround = false;
-    this.isOnLadder = false;
+    this.maximumVelocityY = 8;
+    this.accelerationY = 2;
+    this.frictionY = 0.9;
   }
 
   animate(state) {
@@ -36,13 +31,26 @@ export default class Cthulu {
       );
     }
 
+    if (state.keys[38]) {
+      // up
+      this.velocityY = Math.max(
+        this.velocityY - this.accelerationY,
+        this.maximumVelocityY * -1,
+      );
+    }
+
+    if (state.keys[40]) {
+      // down
+      this.velocityY = Math.min(
+        this.velocityY + this.accelerationY,
+        this.maximumVelocityY,
+      );
+    }
+
     this.velocityX *= this.frictionX;
+    this.velocityY *= this.frictionY;
 
-    this.velocityY = Math.min(
-      this.velocityY + this.accelerationY,
-      this.maximumVelocityY,
-    );
-
+    // Object colision detection
     state.objects.forEach(object => {
       if (object === this) {
         return;
@@ -52,33 +60,15 @@ export default class Cthulu {
       const you = object.rectangle;
       const collides = object.collides;
 
+      // Detects if I'm inside object
       if (
         me.x < you.x + you.width &&
         me.x + me.width > you.x &&
         me.y < you.y + you.height &&
         me.y + me.height > you.y
       ) {
-        if (object.constructor.name === 'Ladder') {
-          if (state.keys[38] || state.keys[40]) {
-            this.isOnLadder = true;
-            this.isOnGround = false;
-            this.velocityY = 0;
-            this.velocityX = 0;
-          }
-          if (state.keys[38]) {
-            this.rectangle.y -= this.climbingSpeed;
-          }
-          if (state.keys[40] && me.y + me.height < you.y + you.height) {
-            this.rectangle.y += this.climbingSpeed;
-          }
-          if (me.y <= you.x - me.height) {
-            this.isOnLadder = false;
-          }
-        }
-
         // Klesání
         if (collides && this.velocityY > 0 && you.y >= me.y) {
-          this.isOnGround = true;
           this.velocityY = 0;
           return;
         }
@@ -89,10 +79,12 @@ export default class Cthulu {
           return;
         }
 
+        // Colision detection X direction
         if (collides && this.velocityX < 0 && you.x <= me.x) {
           this.velocityX = 0;
           return;
         }
+        // Colision detection X direction
         if (collides && this.velocityX > 0 && you.x >= me.x) {
           this.velocityX = 0;
           return;
@@ -100,15 +92,8 @@ export default class Cthulu {
       }
     });
 
-    if (state.keys[32] && this.isOnGround) {
-      this.velocityY = this.jumpVelocity;
-      this.isOnGround = false;
-    }
-
     this.rectangle.x += this.velocityX;
-    if (!this.isOnLadder) {
-      this.rectangle.y += this.velocityY;
-    }
+    this.rectangle.y += this.velocityY;
 
     this.sprite.x = this.rectangle.x;
     this.sprite.y = this.rectangle.y;
