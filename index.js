@@ -1,10 +1,8 @@
-import { gameInstance } from './src/game.js';
-import Cthulu from './src/cthulu.js';
-import Box from './src/box.js';
-import BrainzDisplay from './src/brainzDisplay.js';
-
-import Victim from './src/victims/victim.js';
-import ElderyVictim from './src/victims/elderyVictim.js';
+import Box from './src/box.js'
+import BrainzDisplay from './src/brainzDisplay.js'
+import Cthulu from './src/cthulu.js'
+import { gameInstance } from './src/game.js'
+import ElderyVictim from './src/victims/elderyVictim.js'
 
 gameInstance.addObject(
   new Cthulu(
@@ -14,7 +12,7 @@ gameInstance.addObject(
     new PIXI.Rectangle(window.innerWidth / 2, window.innerHeight / 2, 44, 56),
     new BrainzDisplay('0', '#ffffff'),
   ),
-);
+)
 
 // Victims
 
@@ -29,7 +27,7 @@ gameInstance.addObject(
     ),
     new BrainzDisplay('Dead', '#ffffff'),
   ),
-);
+)
 
 /*gameInstance.addObject(
   new Victim(
@@ -78,7 +76,7 @@ gameInstance.addObject(
     ),
     new PIXI.Rectangle(0, window.innerHeight - 64, window.innerWidth, 64),
   ),
-);
+)
 
 // Top
 gameInstance.addObject(
@@ -90,7 +88,7 @@ gameInstance.addObject(
     ),
     new PIXI.Rectangle(0, 0, window.innerWidth, 64),
   ),
-);
+)
 
 // Left
 gameInstance.addObject(
@@ -102,7 +100,7 @@ gameInstance.addObject(
     ),
     new PIXI.Rectangle(0, 0, 64, window.innerHeight),
   ),
-);
+)
 
 // Right
 gameInstance.addObject(
@@ -114,8 +112,8 @@ gameInstance.addObject(
     ),
     new PIXI.Rectangle(window.innerWidth - 64, 0, 64, window.innerHeight),
   ),
-);
+)
 
-gameInstance.addEventListenerTo(window);
-gameInstance.addRendererTo(document.body);
-gameInstance.animate();
+gameInstance.addEventListenerTo(window)
+gameInstance.addRendererTo(document.body)
+gameInstance.animate()
