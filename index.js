@@ -1,1 +1,1 @@
-document.write('Hello World!')
+import Test from './src/game.js';
