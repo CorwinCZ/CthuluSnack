@@ -1,8 +1,14 @@
-import Box from './src/box.js'
-import BrainzDisplay from './src/brainzDisplay.js'
-import Cthulu from './src/cthulu.js'
-import { gameInstance } from './src/game.js'
-import ElderyVictim from './src/victims/elderyVictim.js'
+import Box from './src/box.js';
+import BrainzDisplay from './src/brainzDisplay.js';
+import Cthulu from './src/cthulu.js';
+import { gameInstance } from './src/game.js';
+
+import ElderyVictim from './src/victims/elderyVictim.js';
+import BusinessManVictim from './src/victims/businessmanVictim.js';
+import CommonVictim from './src/victims/commonVictim.js';
+import CovardVictim from './src/victims/covardVictim.js';
+import FighterVictim from './src/victims/fighterVictim.js';
+import PoliticianTarget from './src/victims/politicianTarget.js';
 
 gameInstance.addObject(
   new Cthulu(
@@ -12,7 +18,7 @@ gameInstance.addObject(
     new PIXI.Rectangle(window.innerWidth / 2, window.innerHeight / 2, 44, 56),
     new BrainzDisplay('0', '#ffffff'),
   ),
-)
+);
 
 // Victims
 
@@ -25,12 +31,12 @@ gameInstance.addObject(
       48,
       56,
     ),
-    new BrainzDisplay('Dead', '#ffffff'),
+    new BrainzDisplay('', 'brown'),
   ),
-)
+);
 
-/*gameInstance.addObject(
-  new Victim(
+gameInstance.addObject(
+  new BusinessManVictim(
     new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
     new PIXI.Rectangle(
       window.innerWidth / 2 + 100,
@@ -38,11 +44,12 @@ gameInstance.addObject(
       48,
       56,
     ),
+    new BrainzDisplay('', 'green'),
   ),
 );
 
 gameInstance.addObject(
-  new Victim(
+  new CommonVictim(
     new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
     new PIXI.Rectangle(
       window.innerWidth / 2 - 100,
@@ -50,11 +57,12 @@ gameInstance.addObject(
       48,
       56,
     ),
+    new BrainzDisplay('', 'yellow'),
   ),
 );
 
 gameInstance.addObject(
-  new Victim(
+  new CovardVictim(
     new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
     new PIXI.Rectangle(
       window.innerWidth / 2 - 100,
@@ -62,8 +70,35 @@ gameInstance.addObject(
       48,
       56,
     ),
+    new BrainzDisplay('', 'blue'),
   ),
-);*/
+);
+
+gameInstance.addObject(
+  new FighterVictim(
+    new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
+    new PIXI.Rectangle(
+      window.innerWidth / 2 - 100,
+      window.innerHeight / 2 - 100,
+      48,
+      56,
+    ),
+    new BrainzDisplay('', 'red'),
+  ),
+);
+
+gameInstance.addObject(
+  new PoliticianTarget(
+    new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
+    new PIXI.Rectangle(
+      window.innerWidth / 2 - 100,
+      window.innerHeight / 2 - 100,
+      48,
+      56,
+    ),
+    new BrainzDisplay('', 'gold'),
+  ),
+);
 
 // Borders
 // Bottom
@@ -76,7 +111,7 @@ gameInstance.addObject(
     ),
     new PIXI.Rectangle(0, window.innerHeight - 64, window.innerWidth, 64),
   ),
-)
+);
 
 // Top
 gameInstance.addObject(
@@ -88,7 +123,7 @@ gameInstance.addObject(
     ),
     new PIXI.Rectangle(0, 0, window.innerWidth, 64),
   ),
-)
+);
 
 // Left
 gameInstance.addObject(
@@ -100,7 +135,7 @@ gameInstance.addObject(
     ),
     new PIXI.Rectangle(0, 0, 64, window.innerHeight),
   ),
-)
+);
 
 // Right
 gameInstance.addObject(
@@ -112,8 +147,8 @@ gameInstance.addObject(
     ),
     new PIXI.Rectangle(window.innerWidth - 64, 0, 64, window.innerHeight),
   ),
-)
+);
 
-gameInstance.addEventListenerTo(window)
-gameInstance.addRendererTo(document.body)
-gameInstance.animate()
+gameInstance.addEventListenerTo(window);
+gameInstance.addRendererTo(document.body);
+gameInstance.animate();
