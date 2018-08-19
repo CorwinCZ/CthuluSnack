@@ -1,20 +1,17 @@
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-#game-root {
-  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/780791/background.png");
+body {
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/780791/background.png');
   color: grey;
   font-family: helvetica, arial;
   font-size: 20px;
   overflow: hidden;
-  width: 1500px;
-  height: 666px;
-  margin-left: 150px;
-  margin-top: 25px;
 }
 
 canvas {
