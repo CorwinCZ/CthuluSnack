@@ -1,0 +1,14 @@
+{
+  "name": "cthulhu",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:CorwinCZ/CthuluSnack.git",
+  "author": "Jakub Buriánek <burianekj@cngroup.dk>",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^9.6.0"
+  },
+  "scripts": {
+    "dev": "serve ."
+  }
+}
