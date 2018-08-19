@@ -12,6 +12,10 @@ export default class Cthulu {
     this.maximumVelocityY = 8;
     this.accelerationY = 2;
     this.frictionY = 0.9;
+
+    this.isAttacking = false;
+    this.attackDurationMax = 15;
+    this.attackDuration = 0;
   }
 
   animate(state) {
@@ -29,6 +33,18 @@ export default class Cthulu {
 
     if (state.keys[40]) {
       this.moveDown();
+    }
+
+    if (state.keys[32] && !this.isAttacking) {
+      this.isAttacking = true;
+      this.attackDuration = this.attackDurationMax;
+    }
+
+    if (this.isAttacking) {
+      this.attackDuration -= 1;
+      if (this.attackDuration < 0) {
+        this.isAttacking = false;
+      }
     }
 
     this.velocityX *= this.frictionX;
@@ -51,6 +67,12 @@ export default class Cthulu {
         me.y < you.y + you.height &&
         me.y + me.height > you.y
       ) {
+        if (object.constructor.name === 'Victim') {
+          if (this.isAttacking) {
+            object.takeDamage();
+          }
+        }
+
         // Klesání
         if (collides && this.velocityY > 0 && you.y >= me.y) {
           this.velocityY = 0;

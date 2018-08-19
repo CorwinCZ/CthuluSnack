@@ -19,6 +19,19 @@ export default class Victim {
     this.moveDirection = 0;
 
     this.maxMoveDuration = 33;
+
+    this.maxHP = 100;
+    this.currentHP = this.maxHP;
+    this.isDead = false;
+  }
+
+  takeDamage() {
+    this.currentHP -= 1;
+    console.log('Ouch', this.currentHP);
+    if (this.currentHP < 0) {
+      console.log('DEAD');
+      this.isDead = true;
+    }
   }
 
   moveLeft() {
@@ -50,6 +63,7 @@ export default class Victim {
   }
 
   checkIfShouldMove() {
+    if (this.isDead) return false;
     if (Math.floor(Math.random() * 100) < this.chanceToMove) {
       this.move = true;
       this.moveDuration = Math.floor(Math.random() * this.maxMoveDuration);
