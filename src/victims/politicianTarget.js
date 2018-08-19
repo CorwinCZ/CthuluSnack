@@ -18,5 +18,7 @@ export default class PoliticianTarget extends Victim {
     this.maxHP = 50;
     this.currentHP = this.maxHP;
     this.brainNutrition = 2;
+
+    this.setInitValues();
   }
 }

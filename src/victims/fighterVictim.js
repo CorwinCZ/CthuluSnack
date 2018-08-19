@@ -16,5 +16,7 @@ export default class FighterVictim extends Victim {
     this.maxHP = 200;
     this.currentHP = this.maxHP;
     this.brainNutrition = 1;
+
+    this.setInitValues();
   }
 }

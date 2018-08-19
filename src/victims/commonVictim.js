@@ -16,5 +16,7 @@ export default class CommonVictim extends Victim {
     this.maxHP = 100;
     this.currentHP = this.maxHP;
     this.brainNutrition = 2;
+
+    this.setInitValues();
   }
 }

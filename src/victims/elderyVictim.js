@@ -14,7 +14,8 @@ export default class ElderyVictim extends Victim {
     this.accelerationY = 0.5;
 
     this.maxHP = 20;
-    this.currentHP = this.maxHP;
     this.brainNutrition = 1;
+
+    this.setInitValues();
   }
 }

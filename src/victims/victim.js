@@ -22,22 +22,26 @@ export default class Victim {
     this.maxMoveDuration = 33;
 
     this.maxHP = 100;
-    this.currentHP = this.maxHP;
     this.isDead = false;
 
     this.brainNutrition = 2;
   }
 
-  takeDamage() {
-    this.currentHP -= 1;
+  setInitValues() {
+    this.currentHP = this.maxHP;
+    this.brainzDisplay.setText(this.currentHP);
+  }
 
-    if (this.currentHP < 0) {
-      console.log('DEAD');
+  takeDamage() {
+    if (this.currentHP <= 0) {
+      this.brainzDisplay.setText('Dead');
       this.isDead = true;
-    } else {
-      return this.brainNutrition;
+      return 0;
     }
-    return 0;
+    this.currentHP -= 1;
+    this.brainzDisplay.setText(this.currentHP);
+
+    return this.brainNutrition;
   }
 
   moveLeft() {
