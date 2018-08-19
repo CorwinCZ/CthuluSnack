@@ -1,6 +1,6 @@
 export default class Victim {
   constructor(sprite, rectangle, brainzDisplay) {
-    this.sprite = sprite;
+    this.sprite = sprite.walking;
     this.rectangle = rectangle;
     this.brainzDisplay = brainzDisplay;
 
@@ -25,6 +25,9 @@ export default class Victim {
     this.isDead = false;
 
     this.brainNutrition = 2;
+
+    this.sprite.animationSpeed = 0.2;
+    this.sprite.play();
   }
 
   setInitValues() {

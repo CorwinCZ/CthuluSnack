@@ -27,18 +27,8 @@ export const loadMetaFile = async url => {
   });
 };
 
-export const getSpriteData = async url => {
-  const meta = await loadMetaFile(url);
-};
-
 export const loadAnimations = async id => {
   const spriteUrl = `assets/Characters/${id}/${`${id}`.padStart(3, '0')}.png`;
-  const meta = await loadMetaFile(`${spriteUrl}.meta`);
-  const spritesheet = meta.TextureImporter.spriteSheet.sprites;
-  const mappedSpritesheet = spritesheet.reduce(
-    (state, current) => ({ ...state, [current.name]: current }),
-    {},
-  );
   const spriteTexture = PIXI.Texture.fromImage(spriteUrl);
   const result = {};
   await Promise.all(

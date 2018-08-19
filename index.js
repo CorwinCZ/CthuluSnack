@@ -10,6 +10,10 @@ import CovardVictim from './src/victims/covardVictim.js';
 import FighterVictim from './src/victims/fighterVictim.js';
 import PoliticianTarget from './src/victims/politicianTarget.js';
 
+import createNewVictim from './src/victims/index.js';
+
+import { loadAnimations } from './src/Unity/MetaFile.js';
+
 gameInstance.addObject(
   new Cthulu(
     new PIXI.Sprite.fromImage(
@@ -22,32 +26,29 @@ gameInstance.addObject(
 
 // Victims
 
-gameInstance.addObject(
-  new ElderyVictim(
-    new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
-    new PIXI.Rectangle(
-      window.innerWidth / 2 + 100,
-      window.innerHeight / 2 + 100,
-      48,
-      56,
+loadAnimations('3').then(data =>
+  gameInstance.addObject(
+    new ElderyVictim(
+      data,
+      new PIXI.Rectangle(
+        window.innerWidth / 2 + 100,
+        window.innerHeight / 2 + 100,
+        96,
+        96,
+      ),
+      new BrainzDisplay('', 'brown'),
     ),
-    new BrainzDisplay('', 'brown'),
   ),
 );
 
-gameInstance.addObject(
-  new BusinessManVictim(
-    new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
-    new PIXI.Rectangle(
-      window.innerWidth / 2 + 100,
-      window.innerHeight / 2 - 100,
-      48,
-      56,
-    ),
-    new BrainzDisplay('', 'green'),
-  ),
+createNewVictim(
+  BusinessManVictim,
+  5,
+  window.innerWidth / 2 + 100,
+  window.innerHeight / 2 + 100,
+  'green',
 );
-
+/*
 gameInstance.addObject(
   new CommonVictim(
     new PIXI.Sprite.fromImage('./src/assets/player-idle-2.png'),
@@ -99,7 +100,7 @@ gameInstance.addObject(
     new BrainzDisplay('', 'gold'),
   ),
 );
-
+*/
 // Borders
 // Bottom
 gameInstance.addObject(
